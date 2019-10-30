@@ -51,18 +51,26 @@ with default parameters and produce a histogram the results.
 # Normal distribution
 norm_5 <- rnorm(n = 5)
 norm_10 <- rnorm(n = 10)
-norm_200 <- rnorm(_____)
-_____
+norm_200 <- rnorm(n = 200)
+norm_1000 <- rnorm(n = 1000)
 
-# Histograms
+# Histograms for normal distribution
 hist(norm_5)
 hist(norm_10)
-_____
-_____
+hist(norm_200)
+hist(norm_1000)
 
 # Exponential distribution
 exp_5 <- rexp(n = 5)
+exp_10 <- rexp(n = 10)
+exp_200 <- rexp(n = 200)
+exp_1000 <- rexp(n = 1000)
 
+# Histograms for exponential distribition
+hist(exp_5)
+hist(exp_10)
+hist(exp_200)
+hist(exp_1000)
 ```
 
 > Take 30 samples and repeat this 6 times for your two distributions. Histogram the observations.
@@ -83,20 +91,44 @@ repeated_norm
 
 # Exponential distribution
 repeated_exp <- tibble(
-  ______
+  a = rexp(n = 30), 
+  b = rexp(n = 30), 
+  c = rexp(n = 30), 
+  d = rexp(n = 30), 
+  e = rexp(n = 30), 
+  f = rexp(n = 30)
 )
 
 # Histograms with hist()
 hist(repeated_norm$a)
 hist(repeated_norm$b)
-_____
+hist(repeated_norm$c)
+hist(repeated_norm$d)
+hist(repeated_norm$e)
+hist(repeated_norm$f)
+
+# Histograms with hist()
+hist(repeated_exp$a)
+hist(repeated_exp$b)
+hist(repeated_exp$c)
+hist(repeated_exp$d)
+hist(repeated_exp$e)
+hist(repeated_exp$f)
+
 
 # Histograms with ggplot and facets
 long_norm <- gather(repeated_norm, sample_id, sample_value)
 
 long_norm
 
+long_exp <- gather(repeated_exp, sample_id, sample_value)
+
+long_exp
+
+
 ggplot(long_norm, aes(x = sample_value)) + geom_histogram() + facet_wrap(~ sample_id)
+ggplot(short_norm, aes(x = sample_value)) + geom_histogram(bins = 5) + facet_wrap(~ sample_id)
+
 ```
 
 > Create box and whisker plots for your repeated samples. The central box shows between (roughly) 
@@ -119,10 +151,15 @@ boxplot(repeated_norm)
 boxplot(sample_value ~ sample_id, data = long_norm)
 
 # Boxplots with ggplot
-ggplot(long_norm, aes(x=sample_id, y = sample_value)) + geom_?????()
+ggplot(long_norm, aes(x=sample_id, y = sample_value)) + geom_boxplot()
 
 # Exponential distribution
-_____
+boxplot(repeated_exp)
+
+boxplot(sample_value ~ sample_id, data = long_exp)
+
+# Boxplots with ggplot
+ggplot(long_exp, aes(x=sample_id, y = sample_value)) + geom_boxplot()
 
 ```
 
@@ -140,11 +177,55 @@ these data sets as you explore them with different sampling depths?
 
 ```{r real_data}
 # Sample with different n values
+hgt50 <- sample_height(50)
+
+repeated_hgt <- tibble(
+  a = rnorm(hgt50), 
+  b = rnorm(hgt50), 
+  c = rnorm(hgt50), 
+  d = rnorm(hgt50), 
+  e = rnorm(hgt50), 
+  f = rnorm(hgt50)
+)
+
+repeated_hgt
+
+# Histograms with ggplot and facets
+some_hgt50 <- gather(repeated_hgt, sample_id, height50)
+
+some_hgt50
+
+ggplot(some_hgt50, aes(x = sample_id, y = height50)) + geom_boxplot()
+
+
+#----------------------------------#
+
+# Sample with different n values
+some_income20 <- sample_income(20)
+some_income100 <- sample_income(100)
 
 
 # Histogram summaries
-
+hist(some_income20)
+hist(some_income100)
 
 # Boxplot summaries
+boxplot(some_income20)
+boxplot(some_income100)
+
+#----------------------------------#
+
+# Sample with different n values
+some_nuggety20 <- sample_nuggety(20)
+some_nuggety100 <- sample_nuggety(100)
+
+
+# Histogram summaries
+hist(some_nuggety20)
+hist(some_nuggety100)
+
+# Boxplot summaries
+boxplot(some_nuggety20)
+boxplot(some_nuggety100)
 
 ```

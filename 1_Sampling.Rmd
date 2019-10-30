@@ -176,7 +176,7 @@ the number of samples to take:
 these data sets as you explore them with different sampling depths?
 
 ```{r real_data}
-# Sample with different n values
+# sample_height with 50 values
 hgt50 <- sample_height(50)
 
 repeated_hgt <- tibble(
@@ -197,35 +197,117 @@ some_hgt50
 
 ggplot(some_hgt50, aes(x = sample_id, y = height50)) + geom_boxplot()
 
+#---------------------------------------------------------------------------------------------#
 
-#----------------------------------#
+# sample_height with 1000 values
+hgt1000 <- sample_height(1000)
 
-# Sample with different n values
-some_income20 <- sample_income(20)
-some_income100 <- sample_income(100)
+repeated_hgt <- tibble(
+  a = rnorm(hgt1000), 
+  b = rnorm(hgt1000), 
+  c = rnorm(hgt1000), 
+  d = rnorm(hgt1000), 
+  e = rnorm(hgt1000), 
+  f = rnorm(hgt1000)
+)
 
+repeated_hgt
 
-# Histogram summaries
-hist(some_income20)
-hist(some_income100)
+# Histograms with ggplot and facets
+some_hgt1000 <- gather(repeated_hgt, sample_id, height1000)
 
-# Boxplot summaries
-boxplot(some_income20)
-boxplot(some_income100)
+some_hgt1000
 
-#----------------------------------#
+ggplot(some_hgt1000, aes(x = sample_id, y = height1000)) + geom_boxplot()
 
-# Sample with different n values
-some_nuggety20 <- sample_nuggety(20)
-some_nuggety100 <- sample_nuggety(100)
+#---------------------------------------------------------------------------------------------#
 
+# sample_income with 50 values
+inc50 <- sample_income(50)
 
-# Histogram summaries
-hist(some_nuggety20)
-hist(some_nuggety100)
+repeated_inc50 <- tibble(
+  a = rnorm(inc50), 
+  b = rnorm(inc50), 
+  c = rnorm(inc50), 
+  d = rnorm(inc50), 
+  e = rnorm(inc50), 
+  f = rnorm(inc50)
+)
 
-# Boxplot summaries
-boxplot(some_nuggety20)
-boxplot(some_nuggety100)
+repeated_inc50
+
+# Histograms with ggplot and facets
+some_inc50 <- gather(repeated_inc50, sample_id, income50)
+
+some_inc50
+
+ggplot(some_inc50, aes(x = sample_id, y = income50)) + geom_boxplot()
+
+#---------------------------------------------------------------------------------------------#
+# sample_income with 1000 values
+inc1000 <- sample_income(1000)
+
+repeated_inc1000 <- tibble(
+  a = rnorm(inc1000), 
+  b = rnorm(inc1000), 
+  c = rnorm(inc1000), 
+  d = rnorm(inc1000), 
+  e = rnorm(inc1000), 
+  f = rnorm(inc1000)
+)
+
+repeated_inc1000
+
+# Histograms with ggplot and facets
+some_inc1000 <- gather(repeated_inc1000, sample_id, income1000)
+
+some_inc1000
+
+ggplot(some_inc1000, aes(x = sample_id, y = income1000)) + geom_boxplot()
+
+#---------------------------------------------------------------------------------------------#
+# sample_nuggety with 50 values
+nug50 <- sample_nuggety(50)
+
+repeated_nug50 <- tibble(
+  a = rnorm(nug50), 
+  b = rnorm(nug50), 
+  c = rnorm(nug50), 
+  d = rnorm(nug50), 
+  e = rnorm(nug50), 
+  f = rnorm(nug50)
+)
+
+repeated_nug50
+
+# Histograms with ggplot and facets
+some_nug50 <- gather(repeated_nug50, sample_id, nugget50)
+
+some_nug50
+
+ggplot(some_nug50, aes(x = sample_id, y = nugget50)) + geom_boxplot()
+
+#---------------------------------------------------------------------------------------------#
+# sample_nuggety with 1000 values
+nug1000 <- sample_nuggety(1000)
+
+repeated_nug1000 <- tibble(
+  a = rnorm(nug1000), 
+  b = rnorm(nug1000), 
+  c = rnorm(nug1000), 
+  d = rnorm(nug1000), 
+  e = rnorm(nug1000), 
+  f = rnorm(nug1000)
+)
+
+repeated_nug1000
+
+# Histograms with ggplot and facets
+some_nug1000 <- gather(repeated_nug1000, sample_id, nugget1000)
+
+some_nug1000
+
+ggplot(some_nug1000, aes(x = sample_id, y = nugget1000)) + geom_boxplot()
+
 
 ```

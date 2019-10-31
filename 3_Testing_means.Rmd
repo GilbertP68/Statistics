@@ -19,18 +19,40 @@ or summary statistics).
 
 ```{r t_tests}
 # sleep t test
-sleep_t <- t.test(_____ ~ _____, data = sleep)
+sleep_t <- t.test(extra ~ group, data = sleep)
 
 sleep_t
 
 # InsectSprays t test for sprays A and B
 spray_AB <- filter(InsectSprays, spray %in% c("A","B"))
 
-spray_AB_t <- t.test(_____)
+spray_AB_t <- t.test(count ~ spray, spray_AB)
 
 spray_AB_t
 
-# Choose your own pair of sprays to compare:
+# Choose your own pair of sprays to compare: C vs E
+
+spray_CE <- filter(InsectSprays, spray %in% c("C","E"))
+
+spray_CE_t <- t.test(count ~ spray, spray_CE)
+
+spray_CE_t
+# Choose your own pair of sprays to compare: C vs D
+
+spray_CD <- filter(InsectSprays, spray %in% c("D","C"))
+
+spray_CD_t <- t.test(count ~ spray, spray_CD)
+
+spray_CD_t
+
+
+# Example below shows a very low p-value means the null hyppothesis 
+# is rejected and there is a high level of significance of difference
+spray_CF <- filter(InsectSprays, spray %in% c("F","C"))
+
+spray_CF_t <- t.test(count ~ spray, spray_CF)
+
+spray_CF_t
 
 ```
 

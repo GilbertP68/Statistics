@@ -15,6 +15,9 @@ to work with two inbuilt datasets, `sleep` and `InsectSprays`.
 #Learn about the datasets
 ?sleep
 ?InsectSprays
+
+sleep
+InsectSprays
 ```
 
 
@@ -33,12 +36,23 @@ for each experimental group in the `sleep` and `InsectSprays` data set.
 ```{r summary_stats}
 # Summarise sleep
 sleep %>% 
-  group_by(_____) %>% 
-  summarise(_____)
+  group_by(group) %>% 
+  summarise(mean_sl = mean(extra),
+            median_sl = median(extra),
+            variance_sl = var(extra),
+            sd_sl = sd(extra),
+            iq_sl = IQR(extra)
+            )
 
 # Summarise InsectSprays
 InsectSprays %>% 
-  _____
+  group_by(spray) %>% 
+  summarise(mean_ins = mean(count),
+            median_ins = median(count),
+            variance_ins = var(count),
+            sd_ins = sd(count),
+            iq_ins = IQR(count)
+            )
 ```
 
 Are the summary statistics useful in understanding the data?
@@ -51,9 +65,32 @@ sleep %>%
   ggplot(aes(x = group, y = extra)) +
   geom_boxplot()
 
+sleep %>% 
+  ggplot(aes(x = extra)) +
+  geom_histogram(bins = 15)
+
+
+sleep %>% 
+  ggplot(aes(x = group, y = extra)) +
+  geom_jitter(width = .1) +
+  geom_boxplot(alpha = .2)
+
 # Boxplot for InsectSprays data
 InsectSprays %>% 
-  _____
+  ggplot(aes(x = spray, y = count)) +
+  geom_boxplot()
+
+InsectSprays %>% 
+  ggplot(aes(x = spray, y = count)) +
+  geom_jitter(width = .15, alpha = .6) +
+  geom_boxplot(alpha = .2)
+  
+
+InsectSprays %>% 
+  ggplot(aes(x = count)) +
+  geom_histogram(bins = 15)
+
+  
 ```
 
 

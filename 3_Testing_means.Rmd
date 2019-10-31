@@ -54,6 +54,11 @@ spray_CF_t <- t.test(count ~ spray, spray_CF)
 
 spray_CF_t
 
+#----------------------------------------------------------------
+spray_F <- filter(InsectSprays, spray %in% c("F"))
+
+shapiro.test(spray_F$count)
+
 ```
 
 What information does the t test show you, and how do you interpret these result?

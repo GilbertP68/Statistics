@@ -197,6 +197,11 @@ some_hgt50
 
 ggplot(some_hgt50, aes(x = sample_id, y = height50)) + geom_boxplot()
 
+ggplot(some_hgt50, aes(x = height50)) + geom_histogram() + facet_wrap(~sample_id)
+
+ggplot(some_hgt50, aes(x = height50)) + geom_histogram(bins = 30) + facet_wrap(~sample_id)
+
+
 #---------------------------------------------------------------------------------------------#
 
 # sample_height with 1000 values

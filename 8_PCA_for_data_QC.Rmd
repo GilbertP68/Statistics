@@ -76,6 +76,8 @@ heat_stress_pca$x %>%
   geom_text(aes(label = timepoint, color = timepoint))
 
 barplot(mtcars_pca$rotation[, "PC1"])
+
+biplot(mtcars_pca)
 ```
 
 Once you have got the basic plot working, try colouring the points by the replicate or the timepoint.

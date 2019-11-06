@@ -5,7 +5,8 @@ output: html_document
 
 ```{r setup, include=FALSE}
 library(tidyverse)
-
+install.packages("ggResidpanel")
+library(ggResidpanel)
 source("stats_helpers.R")
 ```
 
@@ -39,8 +40,34 @@ the Degree of Formality (`DoF`) for each representative:
 tweet_data <- read_csv("data/tweet_data.csv")
 
 tweet_data
-```
 
+# Fit linear regression
+first_tweet_model <- lm(DoF ~ trump_margin, data = tweet_data)
+first_tweet_model
+
+tweet_data %>% 
+  ggplot(aes(x = trump_margin, y = DoF)) +
+  geom_point() +
+  geom_abline(intercept = 1.2, slope = 0.057)
+
+tweet_data %>% 
+  ggplot(aes(x = trump_margin, y = DoF)) +
+  geom_point() +
+  geom_smooth(method = "lm")
+
+plot(first_tweet_model)
+
+resid_panel(first_tweet_model)
+
+summary(first_tweet_model) # the null hypothesis is rejected!
+
+```
+ ### Equation
+ 
+  Y = aX + b
+ 
+  DoF = 0.057*trump_margin + 1.2
+  
 ### More Discussion
 Additional variables can be added to the plot by selecting the "Add more data variables" checkbox.
 Does this new information change your view of the relationships in the data? Draw your new guess at

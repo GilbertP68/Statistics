@@ -28,10 +28,12 @@ check that our experiment has been succesful before we begin a more detailed ana
 
 ```{r expression_pca}
 # Peform the PCA on the already scaled heat_stress data
-heat_stress_pca <- _____
+heat_stress_pca <- prcomp(heat_stress)
 
 # Check the summary
 summary(heat_stress_pca)
+
+plot(heat_stress_pca)
 ```
 
 Now, we would like to plot the samples along the principal components. Since the sample names are of
@@ -41,8 +43,39 @@ modify the code block below to show a plot along the first two principal compone
 heat_stress_pca$x %>% 
   as_tibble(rownames = "sample") %>% 
   separate(sample, into = c("replicate","timepoint"), sep = "_") %>% 
-  ggplot(aes(_____)) +
-  geom_point()
+  ggplot(aes(x = PC1, y = PC2)) +
+  geom_point(size = .1) +
+  geom_text(aes(label = timepoint, color = replicate))
+
+heat_stress_pca$x %>% 
+  as_tibble(rownames = "sample") %>% 
+  separate(sample, into = c("replicate","timepoint"), sep = "_") %>% 
+  ggplot(aes(x = PC1, y = PC3)) +
+  geom_point(size = .1) +
+  geom_text(aes(label = timepoint, color = replicate))
+
+heat_stress_pca$x %>% 
+  as_tibble(rownames = "sample") %>% 
+  separate(sample, into = c("replicate","timepoint"), sep = "_") %>% 
+  ggplot(aes(x = PC1, y = PC4)) +
+  geom_point(size = .1) +
+  geom_text(aes(label = timepoint, color = replicate))
+
+heat_stress_pca$x %>% 
+  as_tibble(rownames = "sample") %>% 
+  separate(sample, into = c("replicate","timepoint"), sep = "_") %>% 
+  ggplot(aes(x = PC1, y = PC2)) +
+  geom_point(size = .1) +
+  geom_text(aes(label = timepoint, color = timepoint))
+
+heat_stress_pca$x %>% 
+  as_tibble(rownames = "sample") %>% 
+  separate(sample, into = c("replicate","timepoint"), sep = "_") %>% 
+  ggplot(aes(x = PC3, y = PC4)) +
+  geom_point(size = .1) +
+  geom_text(aes(label = timepoint, color = timepoint))
+
+barplot(mtcars_pca$rotation[, "PC1"])
 ```
 
 Once you have got the basic plot working, try colouring the points by the replicate or the timepoint.

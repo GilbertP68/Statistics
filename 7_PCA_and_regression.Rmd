@@ -13,6 +13,7 @@ To introduce PCA, we will work with the inbuilt `mtcars` dataset. First, we will
 and scale them all to have mean equal to zero and standard deviation equal to one.
 
 ```{r mtcars_data}
+mtcars
 # Removing am and vs because they are categorical variables
 # Removing mpg because we will use it later to show how we can use PCA
 mtcars_scaled <- select(mtcars, -mpg, -am, -vs) %>% scale
@@ -65,6 +66,14 @@ component.
 
 ```{r mtcars_rotation}
 mtcars_pca$rotation
+
+mtcars_pca$x# 0.64
+
+mtcars_scaled[1, ] 
+
+mtcars_pca$rotation[, 1]
+
+sum(mtcars_scaled[1, ] * mtcars_pca$rotation[, 1])
 ```
 For example, the PC1 values are high when the `cyl`, `disp`, `hp`, `wt`, and `carb`
 variables are high, and low when the `drat`, `qsec`, and `gear` variables are high.

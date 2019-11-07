@@ -95,6 +95,13 @@ additive_model <- lm(DoF ~ trump_margin + party, data = tweet_data)
 summary(additive_model)
 ```
 
+DoF ~ trump_margin + party
+Y = aX + b
+
+DoF = a*trump_margin + b + partyRepublican
+DoF = 0.022443 * trump_margin + -0.220147 + 2.964780 (if Republican)
+
+
 How do we interpret this result? Remember that the formula for the multivariate model is:
                 $$Y = B_1*X_1 + B_2*X_2 + \dots + B_0 + \epsilon$$
 In our example, $Y$ is life expectancy, $X_1$ is `trump_margin`, and $X_2$ is the `party`.
@@ -119,6 +126,7 @@ Finally, don't forget to check your model to check that your assumptions around 
 
 ```{r additive_check}
 resid_panel(additive_model)
+
 ```
 
 
@@ -126,9 +134,21 @@ resid_panel(additive_model)
 
 Now, give this a try with the interactive model (`Dof ~ trump_margin * party`)
 ```{r fit_interactive}
-interactive_model <- _____
+interactive_model <- lm(DoF ~ trump_margin * party, data = tweet_data)
+
+# Check results
+summary(interactive_model)
 ```
 
+Y = aX + b
+
+DoF = 0.025517 * trump_margin + -.017490 * trump_margin (if Republican) + -0.125489 + 3.25720 (if Republican)
+
+
+```{r interactive_check}
+
+resid_panel(interactive_model)
+```
 Then, check the results with `summary`, and assess the model residuals.
 ```{r diamonds_model}
 # Check model results
